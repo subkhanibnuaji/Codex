@@ -1,0 +1,22 @@
+<%- include('partials/header', { pageTitle: `Edit ${post.title}` }) %>
+<section class="edit-post">
+  <h1>Edit post</h1>
+  <% if (typeof error === 'string' && error.length) { %>
+    <div class="alert alert-error"><%= error %></div>
+  <% } %>
+  <form action="/posts/<%= post.id %>?_method=PUT" method="POST" class="form">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" value="<%= post.title %>" required />
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea id="content" name="content" rows="8" required><%= post.content %></textarea>
+    </div>
+    <div class="form-actions">
+      <a href="/posts/<%= post.id %>" class="btn btn-secondary">Cancel</a>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+  </form>
+</section>
+<%- include('partials/footer') %>
