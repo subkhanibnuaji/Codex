@@ -1,0 +1,18 @@
+<%- include('partials/header', { pageTitle: post.title }) %>
+<article class="single-post">
+  <header class="single-post-header">
+    <h1><%= post.title %></h1>
+    <p class="timestamp">
+      Created <%= post.createdAt.toLocaleString() %> · Updated <%= post.updatedAt.toLocaleString() %>
+    </p>
+  </header>
+  <div class="content"><%= post.content %></div>
+  <div class="single-post-actions">
+    <a href="/" class="btn btn-secondary">Back</a>
+    <a href="/posts/<%= post.id %>/edit" class="btn btn-secondary">Edit</a>
+    <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" onsubmit="return confirm('Delete this post?');">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+</article>
+<%- include('partials/footer') %>
